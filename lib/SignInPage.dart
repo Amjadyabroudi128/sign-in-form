@@ -11,6 +11,13 @@ class SignInPage extends StatefulWidget {
 class _SignInPageState extends State<SignInPage> {
   final emailController = TextEditingController();
   final passwordController = TextEditingController();
+  bool passwordVisible=false;
+
+  @override
+  void initState(){
+    super.initState();
+    passwordVisible=true;
+  }
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -38,14 +45,23 @@ class _SignInPageState extends State<SignInPage> {
             ),
             SizedBox(height: 15,),
             TextField (
-                obscureText: true,
+                obscureText: passwordVisible,
                 textAlign: TextAlign.center,
                 controller: passwordController,
               decoration: InputDecoration(
                 border: OutlineInputBorder(),
-                  hintText: "enter your password here "
+                  hintText: "enter your password here ",
+                suffixIcon: IconButton(
+                  icon: Icon(
+                    passwordVisible ? Icons.visibility : Icons.visibility_off),
+                  onPressed: (){
+                    setState(() {
+                      passwordVisible = !passwordVisible;
+                    });
+                  },
+                  ),
+                )
               ),
-            ),
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               crossAxisAlignment: CrossAxisAlignment.center,
