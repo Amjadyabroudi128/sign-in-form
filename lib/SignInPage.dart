@@ -12,6 +12,8 @@ class _SignInPageState extends State<SignInPage> {
   final emailController = TextEditingController();
   final passwordController = TextEditingController();
   bool passwordVisible=false;
+  final _formKey = GlobalKey<FormState>();
+
 
   @override
   void initState(){
@@ -21,36 +23,39 @@ class _SignInPageState extends State<SignInPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        centerTitle: true,
-        title: Text('Signin',),
-      ),
-      body: Center(
+      body: SafeArea(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
+            Icon(
+              Icons.lock,
+              size: 100,
+            ),
+            Text('Welcome back', style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),),
             Padding(
               padding: EdgeInsets.symmetric(horizontal: 8, vertical: 16),
-              child: TextField (
+              child: TextFormField(
+                key: _formKey,
                   textAlign: TextAlign.center,
                   keyboardType: TextInputType.emailAddress,
                   controller: emailController,
                 decoration: InputDecoration(
 
                   border: OutlineInputBorder(),
-                  hintText: "enter your email"
+                  hintText: "enter your email",
+                  prefixIcon: Icon(Icons.email, color: Colors.black,)
                 ),
-
               ),
             ),
             SizedBox(height: 15,),
-            TextField (
+            TextFormField (
                 obscureText: passwordVisible,
                 textAlign: TextAlign.center,
                 controller: passwordController,
               decoration: InputDecoration(
                 border: OutlineInputBorder(),
-                  hintText: "enter your password here ",
+                  hintText: "enter your password",
+                prefixIcon: Icon(Icons.lock, color: Colors.black,),
                 suffixIcon: IconButton(
                   icon: Icon(
                     passwordVisible ? Icons.visibility : Icons.visibility_off),
@@ -60,18 +65,30 @@ class _SignInPageState extends State<SignInPage> {
                     });
                   },
                   ),
-                )
+                ),
+
               ),
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
-                Text("already sign in?"),
+                Text("you are new?"),
                 TextButton(
-                  child: Text("press me"),
+                  child: Text("SIGN UP", style: TextStyle(color: Colors.red),),
                   onPressed: (){},
                 )
               ],
+            ),
+            Padding(
+              padding: EdgeInsets.all(12.0),
+              child: Container(
+                child: MaterialButton(
+                  child: Text("Log in ", style: TextStyle(fontWeight: FontWeight.bold),),
+                  onPressed: (){},
+                ),
+                color: Colors.blue,
+                width: 250,
+              ),
             )
           ],
         ),
