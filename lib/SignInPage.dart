@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:signinform/SignUp.dart';
 
 class SignInPage extends StatefulWidget {
   const SignInPage({Key? key}) : super(key: key);
@@ -28,14 +29,13 @@ class _SignInPageState extends State<SignInPage> {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Icon(
-              Icons.lock,
+              Icons.lock_open,
               size: 100,
             ),
             Text('Welcome back', style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),),
             Padding(
               padding: EdgeInsets.symmetric(horizontal: 8, vertical: 16),
               child: TextFormField(
-                key: _formKey,
                   textAlign: TextAlign.center,
                   keyboardType: TextInputType.emailAddress,
                   controller: emailController,
@@ -75,7 +75,12 @@ class _SignInPageState extends State<SignInPage> {
                 Text("you are new?"),
                 TextButton(
                   child: Text("SIGN UP", style: TextStyle(color: Colors.red),),
-                  onPressed: (){},
+                  onPressed: (){
+                    Navigator.push(
+                      context,
+                      CupertinoPageRoute(builder: (context) => const SignUpPage()),
+                    );
+                  },
                 )
               ],
             ),
