@@ -13,7 +13,7 @@ class _SignInPageState extends State<SignInPage> {
   final emailController = TextEditingController();
   final passwordController = TextEditingController();
   bool passwordVisible=false;
-  final _formKey = GlobalKey<FormState>();
+  bool _validate = false;
 
 
   @override
@@ -41,8 +41,14 @@ class _SignInPageState extends State<SignInPage> {
                   controller: emailController,
                 decoration: InputDecoration(
 
-                  border: OutlineInputBorder(),
-                  hintText: "enter your email",
+                    enabledBorder: OutlineInputBorder(
+                      borderSide: BorderSide(
+                          width: 1, color: Colors.black
+                      ),
+                      borderRadius: BorderRadius.circular(30.0),
+                    ),
+                  labelText: "enter your email" ,
+                    errorText: _validate ? "email can't be empty": null,
                   prefixIcon: Icon(Icons.email, color: Colors.black,)
                 ),
               ),
@@ -53,8 +59,14 @@ class _SignInPageState extends State<SignInPage> {
                 textAlign: TextAlign.center,
                 controller: passwordController,
               decoration: InputDecoration(
-                border: OutlineInputBorder(),
-                  hintText: "enter your password",
+                enabledBorder: OutlineInputBorder(
+                  borderSide: BorderSide(
+                      width: 1, color: Colors.black
+                  ),
+                  borderRadius: BorderRadius.circular(30.0),
+                ),
+                 labelText: "Password",
+                errorText: _validate ? "password can't be empty": null,
                 prefixIcon: Icon(Icons.lock, color: Colors.black,),
                 suffixIcon: IconButton(
                   icon: Icon(
@@ -87,17 +99,28 @@ class _SignInPageState extends State<SignInPage> {
             Padding(
               padding: EdgeInsets.all(12.0),
               child: Container(
-                child: MaterialButton(
-                  child: Text("Log in ", style: TextStyle(fontWeight: FontWeight.bold),),
-                  onPressed: (){},
-                ),
                 color: Colors.blue,
                 width: 250,
+                child: MaterialButton(
+                  child: Text("Log in ", style: TextStyle(fontWeight: FontWeight.bold),),
+                  onPressed: (){
+                    setState(() {
+                      emailController.text.isEmpty ? _validate = true : false;
+                      passwordController.text.isEmpty ? _validate = true : false;
+                      clearText();
+                    });
+                  },
+                ),
               ),
             )
           ],
         ),
       ),
     );
+  }
+
+  void clearText() {
+    emailController.clear();
+    passwordController.clear();
   }
 }
