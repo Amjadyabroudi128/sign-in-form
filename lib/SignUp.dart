@@ -36,26 +36,37 @@ class _SignUpPageState extends State<SignUpPage> {
                 SizedBox(height: 20,),
                 Text('Register here', style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),),
                 SizedBox(height: 20,),
-                TextFormField(
-                  key: _formKey,
-                  textAlign: TextAlign.center,
-                  keyboardType: TextInputType.emailAddress,
-                  controller: nameController,
-                  decoration: InputDecoration(
-
-                      border: OutlineInputBorder(),
-                      hintText: "e.g john",
-                      prefixIcon: Icon(Icons.person, color: Colors.black,)
+            TextFormField(
+              decoration: InputDecoration(
+                enabledBorder: OutlineInputBorder(
+                  borderSide: BorderSide(
+                      width: 1, color: Colors.black
+                  ),
+                  borderRadius: BorderRadius.circular(40.0),
+                ),
+                labelText: 'Enter name',
+                prefixIcon: Align(
+                  widthFactor: 1.0,
+                  heightFactor: 1.0,
+                  child: Icon(
+                    Icons.person,
                   ),
                 ),
+              ),
+            ),
                 SizedBox(height: 15,),
                 TextFormField(
                   textAlign: TextAlign.center,
                   keyboardType: TextInputType.emailAddress,
                   controller: emailController,
                   decoration: InputDecoration(
-                      border: OutlineInputBorder(),
-                      hintText: "enter your email",
+                      enabledBorder: OutlineInputBorder(
+                        borderSide: BorderSide(
+                          width: 1, color: Colors.black
+                        ),
+                        borderRadius: BorderRadius.circular(30.0),
+                      ),
+                      labelText: "enter your email",
                       prefixIcon: Icon(Icons.email, color: Colors.black,)
                   ),
                 ),
@@ -65,8 +76,14 @@ class _SignUpPageState extends State<SignUpPage> {
                   textAlign: TextAlign.center,
                   controller: passwordController,
                   decoration: InputDecoration(
-                    border: OutlineInputBorder(),
-                    hintText: "enter your password",
+                    enabledBorder: OutlineInputBorder(
+                      borderSide: BorderSide(
+                          width: 1, color: Colors.black
+                      ),
+                      borderRadius: BorderRadius.circular(30.0),
+                    ),
+                    labelText: "enter your password",
+                    labelStyle: TextStyle(color: Colors.black),
                     prefixIcon: Icon(Icons.lock, color: Colors.black,),
                     suffixIcon: IconButton(
                       icon: Icon(
@@ -90,9 +107,13 @@ class _SignUpPageState extends State<SignUpPage> {
                     Text("Already have an account?"),
                     SizedBox(width: 15,),
                     Container(
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadiusDirectional.circular(30),
+                        color: Colors.red,
+
+                      ),
                       height: 40,
                       width: 100,
-                      color: Colors.red,
                       child: TextButton(
                         child: Text("LOG IN", style: TextStyle(color: Colors.white),),
                         onPressed: (){
@@ -109,11 +130,15 @@ class _SignUpPageState extends State<SignUpPage> {
                 Padding(
                   padding: EdgeInsets.all(12.0),
                   child: Container(
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadiusDirectional.circular(30),
+                      color: Colors.lightBlue,
+
+                    ),
                     child: MaterialButton(
                       child: Text("Sign UP ", style: TextStyle(fontWeight: FontWeight.bold),),
                       onPressed: (){},
                     ),
-                    color: Colors.lightBlue,
                     width: 250,
                   ),
                 )
