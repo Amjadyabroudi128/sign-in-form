@@ -14,7 +14,7 @@ class _SignUpPageState extends State<SignUpPage> {
   final passwordController = TextEditingController();
   final nameController = TextEditingController();
   bool passwordVisible=false;
-  final _formKey = GlobalKey<FormState>();
+  bool _validate = false;
 
   @override
   void initState(){
@@ -137,7 +137,11 @@ class _SignUpPageState extends State<SignUpPage> {
                     ),
                     child: MaterialButton(
                       child: Text("Sign UP ", style: TextStyle(fontWeight: FontWeight.bold),),
-                      onPressed: (){},
+                      onPressed: (){
+                        emailController.text.isEmpty ? _validate = true : false;
+                        passwordController.text.isEmpty ? _validate = true : false;
+                        clearText();
+                      },
                     ),
                     width: 250,
                   ),
@@ -149,5 +153,9 @@ class _SignUpPageState extends State<SignUpPage> {
         ),
       ),
     );
+  }
+  void clearText() {
+    emailController.clear();
+    passwordController.clear();
   }
 }
