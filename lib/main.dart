@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:signinform/SplashScreen.dart';
 
 import 'SignInPage.dart';
 
@@ -13,7 +14,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: SignInPage(),
+      home: SplashScreen(),
     );
   }
 }
