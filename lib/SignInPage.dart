@@ -24,51 +24,59 @@ class _SignInPageState extends State<SignInPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: SafeArea(
+      body: Container(
+        decoration: BoxDecoration(
+          image: DecorationImage(
+            image: AssetImage("images/flutter.jpg"),
+            fit: BoxFit.cover,
+          ),
+        ),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Icon(
               Icons.lock_open,
               size: 100,
+              color: Colors.white,
             ),
-            Text('Welcome back', style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),),
+            Text('Welcome back', style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20, color: Colors.white),),
             Padding(
               padding: EdgeInsets.symmetric(horizontal: 8, vertical: 16),
               child: TextFormField(
-                  textAlign: TextAlign.center,
+                style: TextStyle(color: Colors.white),
                   keyboardType: TextInputType.emailAddress,
                   controller: emailController,
                 decoration: InputDecoration(
-
                     enabledBorder: OutlineInputBorder(
                       borderSide: BorderSide(
-                          width: 1, color: Colors.black
+                          width: 1, color: Colors.white
                       ),
                       borderRadius: BorderRadius.circular(30.0),
                     ),
-                  labelText: "enter your email" ,
+                  labelText: "enter your email" , labelStyle: TextStyle(color: Colors.white),
                     errorText: _validate ? "email can't be empty": null,
-                  prefixIcon: Icon(Icons.email, color: Colors.black,)
+                  prefixIcon: Icon(Icons.email, color: Colors.white,)
                 ),
               ),
             ),
             SizedBox(height: 15,),
             TextFormField (
-                obscureText: passwordVisible,
-                textAlign: TextAlign.center,
+              cursorColor: Colors.white,
+              style: TextStyle(color: Colors.white),
+              obscureText: passwordVisible,
                 controller: passwordController,
               decoration: InputDecoration(
                 enabledBorder: OutlineInputBorder(
                   borderSide: BorderSide(
-                      width: 1, color: Colors.black
+                      width: 1, color: Colors.white
                   ),
                   borderRadius: BorderRadius.circular(30.0),
                 ),
-                 labelText: "Password",
+                 labelText: "Password", labelStyle: TextStyle(color: Colors.white),
                 errorText: _validate ? "password can't be empty": null,
-                prefixIcon: Icon(Icons.lock, color: Colors.black,),
+                prefixIcon: Icon(Icons.lock, color: Colors.white,),
                 suffixIcon: IconButton(
+                  color: Colors.white,
                   icon: Icon(
                     passwordVisible ? Icons.visibility : Icons.visibility_off),
                   onPressed: (){
@@ -84,7 +92,7 @@ class _SignInPageState extends State<SignInPage> {
               mainAxisAlignment: MainAxisAlignment.center,
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
-                Text("you are new?"),
+                Text("you are new?", style: TextStyle(color: Colors.grey),),
                 TextButton(
                   child: Text("SIGN UP", style: TextStyle(color: Colors.red),),
                   onPressed: (){
